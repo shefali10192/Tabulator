@@ -1,0 +1,135 @@
+*** Settings ***
+#Author Shefali Shah
+Resource    ../Resources/Tabulator_Resources.txt
+Test Setup    Open Browser and Login
+Test Teardown    close Browser
+
+*** Test Cases ***
+TC_001
+##Testcase will verify the content of Java Script Simple Table
+    ${GetText}=    get text    ${XPATH_JavaScriptSimpleTable}
+    ${File}=    get file    ../JavaSimpleTable.txt
+
+
+    ${ExpectedCount}=    get length    ${GetText}
+    ${ActualCount}=    get length    ${File}
+
+## Code Verification of Java Simple Table
+    FOR    ${items}    IN RANGE    ${ActualCount}-1
+        log    ${GetText}[${items}]
+        should be equal     ${GetText}[${items}]    ${File}[${items}]
+    END
+
+TC_002
+### Testcase will verify the content of Java Script Feature Table
+     ${GetText}=    get text    ${XPATHFeatureRichTable}
+     ${File}=    get file    ../FeatureRichTable.txt
+
+    ${ExpectedCount}=    get length    ${GetText}
+    ${ActualCount}=    get length    ${File}
+
+     # Code Verification of Java Feature Table
+    FOR    ${items}    IN RANGE    ${ActualCount}-1
+        log    ${GetText}[${items}]
+        should be equal     ${GetText}[${items}]    ${File}[${items}]
+    END
+
+TC_003
+### This Testcase will verify the Downloaded file is in Dowloaded folder or not
+    click element    css:${CSS_Download}
+    set selenium speed    30 seconds
+    file should exist    ${DownloadFilePath}
+
+TC_004
+### This Testcase for sharing Complex table on Linkedln
+    set selenium speed    5 seconds
+    click element    css:${CSS_Linkedln}
+    select window    ${LinkedlnTitle}
+    ${Loc}=    get location
+    maximize browser window
+    Linkedln Login
+    click element    ${XPATH_ShareInAPost}
+    execute javascript    window.scrollTo(0,700)
+    element should be visible    ${XPATH_LinkedlnPost}
+    click button    css:${CSS_LinkedlnPostButton}
+
+TC_005
+### This testcase for verify CSS Link for Simple Theme
+    click element    ${XPATH_Layout}
+    click element    ${XPATH_Theme}
+    ${GetText}=    get text    ${XPATH_JavaHTMLSimpleTable}
+    should contain    ${GetText}    ${SimpleTheme}
+
+
+TC_006
+### This testcase is for verifying the answer of Question: The table has rendered badly
+    click element    ${XPATH_FAQ}
+    ${AnswerText}=    get text    //h2[text()='${FAQ_Question}']//following-sibling::pre[@class='prettyprint lang-js prettyprinted'][${FAQ_NumberAnswer}]
+    should be equal    ${AnswerText}    ${FAQ_AnswerTitle}
+
+TC_007
+### This testcase is for verifying the NEWS
+    click element    ${XPATH_News}
+    ${AnswerText}=    get text    //h1[text()='${News_Heading}']/span
+    should be equal    ${AnswerText}    ${News_Date}
+
+TC_008
+# This testcase will fetch the Java Script code to lode the table into Tabulator
+    set selenium speed    6 seconds
+    click element    css:${CSS_Search}
+    input text    css:${CSS_Search}    ${Search}
+    click element    ${SearchSuggestion}
+    ${AnswerText}=    get text    ${XPATH_JavaScriptSimpleTableSearch}
+    should contain    ${AnswerText}    ${JavaScriptSimpleTable}
+
+TC_009
+### Filter Data
+    set selenium speed    6 seconds
+    click element    css:${CSS_FilterTableByName}
+    input text    css:${CSS_FilterTableByName}    ${SearchData}
+    ${SearchText}=    get text    css:div[title='${SearchData}']
+    should be equal    ${SearchText}    ${SearchData}
+
+TC_010
+##Testcase for adding row
+    set selenium speed    6 seconds
+    click element    css=${CSS_AddRow}
+    press keys    ${XPATH_AddRowCell}    ${AddRowCell}
+    click element    css=${CSS_FirstRow}
+    ${NewAddData}=    get text    ${XPATH_AddRowCell}
+    should be equal    ${NewAddData}    ${AddRowCell}
+
+TC_011
+### Testcase for undo row
+    click element    css=${CSS_AddRow}
+    press keys    ${XPATH_AddRowCell}    ${AddRowCell}
+    click element    css=${CSS_FirstRow}
+    click element    css=${CSS_UndoRow}
+    click element    css=${CSS_UndoRow}
+    ${FirstRowData}=    get text    ${XPATH_AddRowCell}
+    should be equal    ${FirstRowData}    ${FirstData}
+
+TC_012
+### Testcase for Hiding Rating Column
+    click element    css=${CSS_HideRating}
+    element should not be visible    ${XPATH_Rating}
+
+TC_013
+#### Testcase for counting records
+    set selenium speed    5 seconds
+    ${GetCount}=    get element count   ${XPATH_PaginationCount}
+
+    FOR    ${i}    IN RANGE    ${GetCount}
+                log to console    ${j}
+               run keyword if    ${j} < 5    Click Pagination    ${j}
+    END
+
+TC_014
+#### Click on Download CSV button to download CSV Data
+    set selenium speed    5 seconds
+    click element    css=${CSS_DownLoadCSV}
+    file should exist    ${DownloadFileCSVPath}
+
+
+
+    

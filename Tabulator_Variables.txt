@@ -1,0 +1,37 @@
+*** Variables ***
+${XPATH_JavaScriptSimpleTable}    //pre[@class='prettyprint lang-js prettyprinted'][1]
+${XPATHFeatureRichTable}    //h3[text()='JavaScript - Feature Rich Table']//following-sibling::pre[@class='prettyprint lang-js prettyprinted']
+${CSS_Download}    a#download
+${CSS_Linkedln}    a[data-type='linkedin']
+${CSS_Linkedln_Username}   input#username
+${CSS_LinkedlnPassword}    input#password
+${CSS_LinkedlnSubmit}     div.login__form_action_container >button
+${XPATH_ShareInAPost}    //span[text()='Share in a post']
+${CSS_LinkedlnPostButton}    button#ember91
+${XPATH_LinkedlnPost}    //h2/span[text()='Tabulator - Interactive JavaScript Tables']
+${XPATH_JavaHTMLSimpleTable}    //pre[@class='prettyprint lang-html prettyprinted'][1]
+${XPATH_Layout}  //div[@class='description']/h3[text()='Layout']
+${XPATH_Theme}    //a[text()='Themes']
+
+### FAQ
+${XPATH_FAQ}    //a[text()='FAQ']
+${XPATH_News}    //a[text()='News']
+
+### Search
+${CSS_Search}    input[placeholder='Search Docs']
+${SearchSuggestion}    //div[@class='ds-suggestion'][1]
+${XPATH_JavaScriptSimpleTableSearch}    //pre[@class='prettyprint lang-js prettyprinted'][2]
+
+${CSS_AddRow}    button[name='add-row']
+${CSS_UndoRow}    button[name='undo']
+${CSS_HideRating}    span.hide-rating
+${XPATH_AddRowCell}    //div[@class='tabulator-row tabulator-selectable tabulator-row-odd'][1]/div[@class='tabulator-cell'][1]
+${CSS_FilterTableByName}    input[name='name']
+${CSS_FirstRow}    div[title='Alan Francis']
+${XPATH_Rating}    //div[text()='Rating']
+
+${XPATH_PaginationCount}    //span[@class='tabulator-pages']/button
+${CSS_TableData}    div.tabulator-table>div
+${CSS_DownLoadCSV}    button[name='download']
+
+

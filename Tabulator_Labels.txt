@@ -1,0 +1,33 @@
+*** Variables ***
+${URL}  http://tabulator.info
+${Browser}  Chrome
+
+${JavaScriptSimpleTable}    var table = new Tabulator("#example-table"
+${DownloadFilePath}    C:/Users/112552/Downloads/tabulator-master.zip
+${DownloadFileCSVPath}    C:/Users/112552/Downloads/Tabulator Example Download.csv
+${LinkedlnEmail}    shefali.shah@einfochips.com
+${LinkedlnPassword}    Demo1010@
+${LinkedlnTitle}    LinkedIn Login, Sign in | LinkedIn
+${SimpleTheme}    <link href="/dist/css/tabulator_simple.min.css" rel="stylesheet"
+
+### FQA
+${FAQ_NumberAnswer}    1
+${FAQ_Question}    The table has rendered badly
+${FAQ_AnswerTitle}    table.redraw();
+### NEWS
+
+${News_Heading}    Community Ideas Repo
+${News_Date}    05/09/2020
+
+### Search
+${Search}    loading data into tabulator
+${SearchData}    Christine Lobowski
+${AddRowCell}    Shefali Shah
+${FirstData}    Alan Francis
+${TotalDataCount}    0\
+${j}    1
+
+
+
+
+

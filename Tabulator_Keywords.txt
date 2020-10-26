@@ -1,0 +1,33 @@
+*** Settings ***
+Resource    ../Resources/Tabulator_Resources.txt
+Library    datetime
+
+*** Variables ***
+${TotalDataCount}    0
+
+*** Keywords ***
+Open Browser and Login
+   SeleniumLibrary.open browser    ${URL}    ${Browser}
+    SeleniumLibrary.maximize browser window
+
+close Browser
+    close all browsers
+    run keyword if test failed    Log Screenshot
+
+Log Screenshot
+    capture page screenshot
+
+Linkedln Login
+    input text    css:${CSS_Linkedln_Username}    ${LinkedlnEmail}
+    input text    css:${CSS_LinkedlnPassword}    ${LinkedlnPassword}
+    click button    css:${CSS_LinkedlnSubmit}
+
+Click Pagination
+    [Arguments]    ${i}
+    click element    //span[@class='tabulator-pages']/button[${i}]
+     ${Count}=    get element count    css=${CSS_TableData}
+    ${Var}=     evaluate    ${TotalDataCount}+${Count}
+    set global variable    ${TotalDataCount}    ${Var}
+    ${jValue}=    evaluate    ${i}+1
+    set global variable    ${j}    ${jValue}
+     log to console    ${TotalDataCount}

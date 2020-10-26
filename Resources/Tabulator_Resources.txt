@@ -1,0 +1,14 @@
+*** Settings ***
+#Author Shefali Shah
+Library    SeleniumLibrary
+#Library    Selenium2Library
+Resource    ../../Tabulator/Tabulator_Variables.txt
+Resource    ../../Tabulator/Tabulator_Labels.txt
+Library    OperatingSystem
+Resource    ../../Tabulator/Tabulator_Keywords.txt
+Library    Collections
+Library    DateTime
+set selenium timeout    10 seconds
+
+
+
